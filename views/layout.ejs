@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>Teaching & Learning</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/FrozenUI/1.3.0/css/frozen-min.css">
+    <link rel="stylesheet" href="/css/app_m.css">
+    <% if(typeof(css) !== 'undefined') {
+    if(Array.isArray(css)) {
+            css.forEach(function(item) {
+    %>
+    <link rel="stylesheet" href="<%= item %>">
+    <% })} else { %>
+    <link rel="stylesheet" href="<%= css %>">
+    <% }} %>
+</head>
+<body>
+
+<%- body %>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/FrozenUI/1.3.0/lib/zepto.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/FrozenUI/1.3.0/js/frozen.js"></script>
+<script type="text/javascript" src="/js/app_m.js"></script>
+<% if(typeof(js) !== 'undefined') {
+if(Array.isArray(js)) {
+        js.forEach(function(item) {
+%>
+<script type="text/javascript" src="<%= item %>"></script>
+<% })} else { %>
+<script type="text/javascript" src="<%= js %>"></script>
+<% }} %>
+</body>
+</html>

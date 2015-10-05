@@ -1,0 +1,1 @@
+exports.page = require('./page');

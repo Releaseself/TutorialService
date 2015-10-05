@@ -1,11 +1,17 @@
+var path = require('path');
 var express = require('express');
 var http = require('http');
+var partials = require('express-partials');
+var routes = require('./routes');
 
 var app = express();
 
-app.use(function (req, res, next) {
-    return res.send('Hello world');
-});
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(partials());
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', routes);
 
 /**
  * Create HTTP server.
@@ -17,7 +23,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(3000);
+server.listen(8080);
 server.on('error', onError);
 server.on('listening', onListening);
 

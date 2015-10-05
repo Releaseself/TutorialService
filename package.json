@@ -2,7 +2,9 @@
   "name": "TutorialService",
   "version": "0.0.1",
   "dependencies": {
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "express-partials": "^0.3.0",
     "mongoose": "^4.1.9"
   }
 }
