@@ -1,0 +1,58 @@
+<form class="ui-form" style="background-color: transparent;" onsubmit="<%= (typeof(onsubmit) != 'undefined') ? onsubmit : '' %>">
+    <% if(typeof(_model) != 'undefined') { %>
+    <% for(var __item in _model) {
+        var inputElem = {};
+        inputElem.type = _model[__item].type ? _model[__item].type.toLowerCase() : 'text';
+        if (_model[__item].hidden) {
+            inputElem.type = 'hidden';
+        }
+
+        inputElem.displayName = _model[__item].displayName ? _model[__item].displayName : __item.toString();
+        inputElem.readOnly = _model[__item].readOnly ? 'readonly' : '';
+        inputElem.value = _model[__item].value ? _model[__item].value.toString() : '';
+        inputElem.placeholder = _model[__item].placeholder ? _model[__item].placeholder.toString() : ''
+        inputElem.div_class = 'ui-form-item ui-border-b';
+
+        if (inputElem.type == 'textarea') {
+            inputElem.div_class += ' ui-form-item-textarea';
+        } else if (inputElem.type == 'radio') {
+            inputElem.div_class += ' ui-form-item-radio';
+        } else if (inputElem.type == 'switch') {
+            inputElem.div_class += ' ui-form-item-switch';
+        }
+    %>
+    <div class="<%= inputElem.div_class %>">
+        <% if(inputElem.type == 'switch'){ %>
+        <p><%= inputElem.displayName %></p>
+        <% } else { %>
+        <label><%= inputElem.displayName %></label>
+        <% } %>
+        <% if(inputElem.type == 'textarea') { %>
+        <textarea id="<%= __item %>" name="<%= __item %>"
+                  placeholder="<%= inputElem.placeholder %>" <%= inputElem.readOnly %>><%= inputElem.value %></textarea>
+        <% } else if (inputElem.type == 'radio'){ %>
+        <div style="padding-left: 95px;">
+            <% _model[__item].items.forEach(function(__option) { %>
+            <label class="ui-radio" for="<%= __item %>">
+                <input type="radio" id="<%= __item %>" name="<%= __item %>" value="<%= __option.value %>">
+            </label>
+
+            <span style="margin-right: 15px;"><%= __option.text %></span>
+            <% }) %>
+        </div>
+        <% } else if(inputElem.type == 'switch'){ %>
+        <label class="ui-switch">
+            <input type="checkbox" id="<%= __item %>"
+                   name="<%= __item %>" <%= inputElem.value ? 'checked' : 'unchecked' %>>
+        </label>
+        <% } else { %>
+        <input id="<%= __item %>" name="<%= __item %>" type="<%= inputElem.type %>"
+               value="<%= inputElem.value %>" placeholder="<%= inputElem.placeholder %>" <%= inputElem.readOnly %>>
+        <% } %>
+        <% if(inputElem.type == 'text' || inputElem.type == 'textarea') { %>
+        <a href="javascript:$('#<%= __item %>').val('')" class="ui-icon-close">
+        </a>
+        <% } %>
+    </div>
+    <% }} %>
+</form>

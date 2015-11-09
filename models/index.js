@@ -11,5 +11,5 @@ mongoose.connect(config.db, function (err) {
 require('./teacher');
 require('./enrollment');
 
-exports.teacher = mongoose.model('Teacher');
-exports.enrollment = mongoose.model('Enrollment');
+exports.Teacher = mongoose.model('Teacher');
+exports.Enrollment = mongoose.model('Enrollment');

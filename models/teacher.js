@@ -4,8 +4,9 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var teacherSchema = new mongoose.Schema({
     account_id: {type: ObjectId, index: 1},
     name: {type: String},
+    gender: {type: Number},
     phone: {type: String},
-    address: {type: String},
+    show_phone: {type: Boolean, default: true},
     portrait: {type: String},
     is_personal: {type: String},
     is_valid: {type: String},

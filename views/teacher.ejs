@@ -6,27 +6,10 @@
 
 <footer class="ui-footer ui-footer-stable ui-btn-group ui-border-t">
     <button class="ui-btn-lg"
-            onclick="document.forms[0].submit()"><%= (typeof(acceptButton) != 'undefined') ? acceptButton.value : 'Submit' %></button>
+            onclick="document.forms[0].onsubmit()"><%= (typeof(acceptButton) != 'undefined') ? acceptButton.value : 'Submit' %></button>
 </footer>
 
-<section class="ui-container ui-center" style="padding-top: 5px; padding-bottom: 5px; background-color: white;">
-    <form class="ui-form ui-border-t" onsubmit="return <%= (typeof(submit) != 'undefined') ? submit : 'false' %>">
-        <% if(typeof(model) != 'undefined') { %>
-        <% for(var item in model) { %>
-        <div class="ui-form-item ui-border-b">
-            <label><%= model[item].displayName ? model[item].displayName : item %></label>
-            <% if(model[item].readOnly) { %>
-            <input id="<%= item %>" name="<%= item %>" type="text"
-                   value="<%= model[item].value ? model[item].value : '' %>"
-                   readonly>
-            <% } else { %>
-            <input id="<%= item %>" name="<%= item %>" type="text"
-                   placeholder="<%= model[item].placeholder ? model[item].placeholder : item %>"
-                   value="<%= model[item].value ? model[item].value : '' %>">
-            <a href="javascript:$('#<%= item %>').val('')" class="ui-icon-close">
-            </a>
-            <% } %>
-        </div>
-        <% }} %>
-    </form>
+<section class="ui-container ui-center" style="padding-top: 5px; padding-bottom: 5px;">
+    <% var _model = model %>
+    <%- include templates/edit_form %>
 </section>

@@ -6,12 +6,26 @@ var routes = require('./routes');
 
 var app = express();
 
+app.use(require('body-parser').json());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(partials());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// error handlers
+app.use(function (err, req, res, next) {
+    return res.json({error: err.toString()});
+});
 
 /**
  * Create HTTP server.

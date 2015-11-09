@@ -1,0 +1,24 @@
+<header class="ui-header ui-header-stable ui-border-b">
+    <i class="ui-icon-return" onclick="history.back()"></i>
+
+    <h1>Teacher Detail Info</h1>
+</header>
+
+<section class="ui-container">
+    <ul class="ui-list">
+        <li class="ui-border-t">
+            <div class="ui-avatar-lg">
+                <span style="background-image:url(http://placeholder.qiniudn.com/140x140)"></span>
+            </div>
+
+            <div class="ui-list-info">
+                <h4 class="ui-nowrap"><%= model.name %></h4>
+                <h4 class="ui-txt-info"><%= model.gender %></h4>
+            </div>
+        </li>
+        <li>
+            <h4><%= model.introduction %></h4>
+        </li>
+    </ul>
+</section>
+
